@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="program, technology, share">
+    <meta name="description" content="此博客用于分享个人编程技术文章">
+    <meta name="author" content="muxinxy">
+    
+    <title>
+        
+            Scoop安装使用教程 |
+        
+        牧心星语
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"blog.muxinxy.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"牧心星语","author":"muxinxy","avatar":"/images/avatar.png","logo":"/images/logo.png","favicon":"/images/logo.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":true},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":"https://waline-vercel.muxinxy.com","reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null,"/js/custom-1.js"]},"root":"","version":"4.0.6"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               牧心星语
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >首页</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >归档</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >标签</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >分类</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >关于</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >首页</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Scoop安装使用教程
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">muxinxy</span>
+                                
+                                    <span class="author-badge">Lv1</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-01-18 20:55:25</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Jan 09 2024 07:02:02 GMT+0000">2024-01-09 15:02:02</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Windows/">Windows</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%95%99%E7%A8%8B/">教程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Scoop/">Scoop</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Windows/">Windows</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h1 id="Scoop安装使用教程"><a href="#Scoop安装使用教程" class="headerlink" title="Scoop安装使用教程"></a>Scoop安装使用教程</h1><h1 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h1><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/ScoopInstaller/Install" >https://github.com/ScoopInstaller/Install<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>推荐<span style="font-weight: bold;" class="bold">高级安装</span>中的<span style="font-weight: bold;" class="bold">自定义目录</span>方法</p>
+<p>注意：无法正常访问Github需要设置代理，如果不想设置代理可以使用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/duzyn/scoop-cn" >Scoop-cn<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://aka.ms/powershell" >PowerShell<i class="fas fa-external-link-alt"></i></a> 最新版或者 <a class="link"   target="_blank" rel="noopener" href="https://aka.ms/wmf5download" >Windows PowerShell 5.1<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>PowerShell 执行策略必须是以下之一：<code>Unrestricted</code>​, <code>RemoteSigned </code>​或 <code>ByPass</code>​ 以执行安装程序。比如说：</p>
+<p>​<code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code>​</p>
+</li>
+</ul>
+<h2 id="经典安装"><a href="#经典安装" class="headerlink" title="经典安装"></a>经典安装</h2><p>在非管理员的PowerShell中运行此命令，以默认配置安装scoop，scoop将被安装到<code>C:\Users\&lt;你的用户名&gt;\scoop</code>​（不推荐，因为占用C盘空间并且不利于迁移）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">irm</span> get.scoop.sh | <span class="built_in">iex</span></span><br><span class="line"><span class="comment">#如果你在访问GitHub时遇到网络问题，你可以使用代理，例如</span></span><br><span class="line"><span class="built_in">irm</span> get.scoop.sh <span class="literal">-Proxy</span> <span class="string">&#x27;http://&lt;ip:port&gt;&#x27;</span> | <span class="built_in">iex</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="高级安装"><a href="#高级安装" class="headerlink" title="高级安装"></a>高级安装</h2><p>如果你想高级安装。你可以下载安装程序，然后用参数手动执行它。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">irm</span> get.scoop.sh <span class="literal">-outfile</span> <span class="string">&#x27;install.ps1&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>要查看安装程序的所有可配置参数。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\install.ps1 -?</span><br></pre></td></tr></table></figure>
+
+<p>例如，将 scoop 安装到一个<span style="font-weight: bold;" class="bold">自定义目录</span>，将 scoop 配置为将全局程序安装到一个自定义目录，以及在安装时绕过系统代理（<span style="font-weight: bold;" class="bold">推荐</span>）</p>
+<p>​<code>.\install.ps1 -ScoopDir &#39;D:\Scoop&#39; -ScoopGlobalDir &#39;D:\GlobalScoopApps&#39; -NoProxy</code>​</p>
+<p>或者你可以使用传统的方法，通过设置环境变量来配置自定义目录（不推荐）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$env:SCOOP</span>=<span class="string">&#x27;D:\Applications\Scoop&#x27;</span></span><br><span class="line"><span class="variable">$env:SCOOP_GLOBAL</span>=<span class="string">&#x27;F:\GlobalScoopApps&#x27;</span></span><br><span class="line">[<span class="type">Environment</span>]::SetEnvironmentVariable(<span class="string">&#x27;SCOOP_GLOBAL&#x27;</span>, <span class="variable">$env:SCOOP_GLOBAL</span>, <span class="string">&#x27;Machine&#x27;</span>)</span><br><span class="line"><span class="built_in">irm</span> get.scoop.sh | <span class="built_in">iex</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="对于管理员"><a href="#对于管理员" class="headerlink" title="对于管理员"></a>对于管理员</h3><p>出于安全考虑，在管理员控制台下的安装已被默认禁用。如果你知道自己在做什么并想以管理员身份安装Scoop。请下载安装程序，并在高位控制台中用<code>-RunAsAdmin</code>​参数手动执行它。下面是例子：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">irm</span> get.scoop.sh <span class="literal">-outfile</span> <span class="string">&#x27;install.ps1&#x27;</span></span><br><span class="line">.\install.ps1 <span class="literal">-RunAsAdmin</span> [-<span class="type">OtherParameters</span> <span class="type">...</span>]</span><br><span class="line"><span class="comment">#我不关心其他参数，只想要一个单行命令</span></span><br><span class="line"><span class="built_in">iex</span> <span class="string">&quot;&amp; &#123;<span class="variable">$</span>(irm get.scoop.sh)&#125; -RunAsAdmin&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="静默安装"><a href="#静默安装" class="headerlink" title="静默安装"></a>静默安装</h2><p>你可以将所有的输出重定向到Out-Null或一个日志文件，使安装程序保持沉默。你可以使用<code>$LASTEXITCODE</code>​来检查安装结果，当安装成功时它将是0。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#省略输出</span></span><br><span class="line">.\install.ps1 [-<span class="type">Parameters</span> <span class="type">...</span>] | <span class="built_in">Out-Null</span></span><br><span class="line"><span class="comment">#或者收集日志</span></span><br><span class="line">.\install.ps1 [-<span class="type">Parameters</span> <span class="type">...</span>] &gt; install.log</span><br><span class="line"><span class="comment">#获取结果</span></span><br><span class="line"><span class="variable">$LASTEXITCODE</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h1><h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置Scoop访问Github的代理为v2rayN的http代理</span></span><br><span class="line">scoop config proxy 127.0.0.1:10809</span><br><span class="line"><span class="comment"># 查看Scoop配置信息</span></span><br><span class="line">scoop config</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加别名"><a href="#添加别名" class="headerlink" title="添加别名"></a>添加别名</h2><p>scoop有些命令需要经常使用，比如scoop install、scoop list、scoop uninstall、scoop update等，用多了就会感觉输入的字符太多，所以可以通过设置别名的方式来减少字符输入数量。</p>
+<p>打开<span style="font-weight: bold;" class="bold">Power Shell</span>，必须使用<span style="font-weight: bold;" class="bold">Power Shell</span>，使用cmd会导致别名设置不全的错误，按需选择以下命令执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install app</span></span><br><span class="line">scoop alias add i <span class="string">&#x27;scoop install $args[0]&#x27;</span> <span class="string">&#x27;Install app&#x27;</span></span><br><span class="line">scoop alias add add <span class="string">&#x27;scoop install $args[0]&#x27;</span> <span class="string">&#x27;Install app&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uninstall app</span></span><br><span class="line">scoop alias add <span class="built_in">rm</span> <span class="string">&#x27;scoop uninstall $args[0]&#x27;</span> <span class="string">&#x27;Uninstall an app&#x27;</span></span><br><span class="line">scoop alias add remove <span class="string">&#x27;scoop uninstall $args[0]&#x27;</span> <span class="string">&#x27;Uninstall an app&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># List apps</span></span><br><span class="line">scoop alias add <span class="built_in">ls</span> <span class="string">&#x27;scoop list&#x27;</span> <span class="string">&#x27;List installed apps&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Update</span></span><br><span class="line">scoop alias add u <span class="string">&#x27;scoop update $args[0]&#x27;</span> <span class="string">&#x27;Update apps, or Scoop itself&#x27;</span></span><br><span class="line">scoop alias add upgrade <span class="string">&#x27;scoop update $args[0]&#x27;</span> <span class="string">&#x27;Update apps, or Scoop itself&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Show Status</span></span><br><span class="line">scoop alias add ss <span class="string">&#x27;scoop status&#x27;</span> <span class="string">&#x27;Show status and check for new app versions&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Search app</span></span><br><span class="line">scoop alias add s <span class="string">&#x27;scoop search $args[0]&#x27;</span> <span class="string">&#x27;Search app&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>参考自Github Gist: <a class="link"   target="_blank" rel="noopener" href="https://gist.github.com/idleberg" >idleberg<i class="fas fa-external-link-alt"></i></a>&#x2F;<span style="font-weight: bold;" class="bold"><a class="link"   target="_blank" rel="noopener" href="https://gist.github.com/idleberg/e0872d37f792d3d969f4f3d24698773f" >scoop.md<i class="fas fa-external-link-alt"></i></a></span></p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>为了方便更新软件，将以下内容复制到空白文本文档，并重命名为<code>s.bat</code>​：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop update &amp;&amp; scoop status</span><br></pre></td></tr></table></figure>
+
+<p>将此文件移动到系统盘的用户根目录（如<code>C:\Users\username</code>​），下次启动<code>cmd</code>​就可以直接输入<code>s</code>​并回车，获取软件更新信息，再输入<code>scoop update *</code>​（如果已经设置别名则输入<code>scoop u *</code>​）就可以更新所有软件。</p>
+<h1 id="自建Bucket"><a href="#自建Bucket" class="headerlink" title="自建Bucket"></a>自建Bucket</h1><h2 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库"></a>新建仓库</h2><p>打开 <a class="link"   target="_blank" rel="noopener" href="https://github.com/ScoopInstaller/BucketTemplate" >https://github.com/ScoopInstaller/BucketTemplate<i class="fas fa-external-link-alt"></i></a>，点右上角 <span style="font-weight: bold;" class="bold">Use this template</span>，选择 <span style="font-weight: bold;" class="bold">Create a new repository</span></p>
+<p>​<img  
+                       lazyload
+                       alt="image"
+                       data-src="https://pic.muxinxy.com/2023/09/7d47977105e48ea2bdbd5659d11dbe50.png"
+                        alt="image"
+                 >​</p>
+<p>在打开的页面填写 <span style="font-weight: bold;" class="bold">Repository name</span>，点 <span style="font-weight: bold;" class="bold">Create repository from template</span></p>
+<h2 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h2><p>创建自己的仓库后，打开 Settings -&gt; Actions -&gt; General，将 <span style="font-weight: bold;" class="bold">Workflow permissions</span> 修改为 <span style="font-weight: bold;" class="bold">Read and write permissions</span></p>
+<p>​<img  
+                       lazyload
+                       alt="image"
+                       data-src="https://pic.muxinxy.com/2023/04/3712d9a62ae39de78f0f46e2aa9387d3.png"
+                        alt="image"
+                 >​</p>
+<p>​<img  
+                       lazyload
+                       alt="image"
+                       data-src="https://pic.muxinxy.com/2023/04/168c0ffe561cbc221fa64c1337b6d803.png"
+                        alt="image"
+                 >​</p>
+<h2 id="开启Actions"><a href="#开启Actions" class="headerlink" title="开启Actions"></a>开启Actions</h2><p>参考以下步骤开启 Github Actions 里的 <span style="font-weight: bold;" class="bold">Tests</span> ：</p>
+<p>​<img  
+                       lazyload
+                       alt="image"
+                       data-src="https://pic.muxinxy.com/2024/03/02dac75eb952d8ca64aac57704cf93e2.png"
+                        alt="image"
+                 >​</p>
+<p>​<img  
+                       lazyload
+                       alt="image"
+                       data-src="https://pic.muxinxy.com/2023/09/8318a087837acdab483570a309c839d4.png"
+                        alt="image"
+                 >​</p>
+<p>确保 Github Actions 里的 <span style="font-weight: bold;" class="bold">Tests </span> 已开启，然后就可以向自己仓库的 <span style="font-weight: bold;" class="bold">bucket </span> 文件夹中添加 app manifest 的 json 文件了。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.ixiqin.com/2023/02/18/how-to-deal-with-making-the-action-report-remote-permission-denied-to-xx-x-to-making-the-actions-bot-problem/" >如何处理 Github Action 报出的 remote: Permission to xx x denied to github-actions[bot] 问题<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/165635039" >Scoop 进阶 - 建立自己的Bucket<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/413985471" >Scoop 进阶教程<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>‍</p>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Scoop/">Scoop</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Windows/">Windows</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/upload-code-with-git-to-github-z5p54c.html"
+                                   title="使用Git上传代码到Github"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">使用Git上传代码到Github</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+        >
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+
+          window.KeepCommentPlugin.initWaline = () => {
+            if (window?.Waline) {
+              window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+              window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+              window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-vercel.muxinxy.com'
+              window.KeepCommentPlugin.walineOptions.lang = 'zh-CN' || 'zh-CN'
+              window.KeepCommentPlugin.walineOptions.reaction = 'false' === 'true'
+              window.Waline.init(window.KeepCommentPlugin.walineOptions)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initWaline()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initWaline()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scoop%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="nav-text">Scoop安装使用教程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Github"><span class="nav-text">Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%AE%89%E8%A3%85"><span class="nav-text">经典安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%AE%89%E8%A3%85"><span class="nav-text">高级安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E7%AE%A1%E7%90%86%E5%91%98"><span class="nav-text">对于管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85"><span class="nav-text">静默安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-text">使用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%AB%E5%90%8D"><span class="nav-text">添加别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%BB%BABucket"><span class="nav-text">自建Bucket</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="nav-text">新建仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-text">修改权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AFActions"><span class="nav-text">开启Actions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">muxinxy</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scoop%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="nav-text">Scoop安装使用教程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Github"><span class="nav-text">Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%AE%89%E8%A3%85"><span class="nav-text">经典安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%AE%89%E8%A3%85"><span class="nav-text">高级安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E7%AE%A1%E7%90%86%E5%91%98"><span class="nav-text">对于管理员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E9%BB%98%E5%AE%89%E8%A3%85"><span class="nav-text">静默安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-text">使用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%AB%E5%90%8D"><span class="nav-text">添加别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">快捷键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%BB%BABucket"><span class="nav-text">自建Bucket</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="nav-text">新建仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-text">修改权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AFActions"><span class="nav-text">开启Actions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/lazyload.min.js"></script>
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.6/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
