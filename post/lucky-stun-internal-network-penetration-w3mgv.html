@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="program, technology, share">
+    <meta name="description" content="此博客用于分享个人编程技术文章">
+    <meta name="author" content="muxinxy">
+    
+    <title>
+        
+            Lucky STUN 内网穿透 |
+        
+        牧心星语
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/font/css/brands.min.css">
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"blog.muxinxy.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"牧心星语","author":"muxinxy","avatar":"/images/avatar.png","logo":"/images/logo.png","favicon":"/images/logo.png"},"menu":{"home":"/                       || fa-solid fa-home","archives":"/archives           || fa-solid fa-box-archive","tags":"/tags                 || fa-solid fa-tags","categories":"/categories     || fa-solid fa-layer-group","links":"/links               || fa-solid fa-link"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"waline","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":"https://waline-vercel.muxinxy.com","reaction":false,"version":"3.6.0"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"site_deploy":{"enable":true,"provider":"netlify","url":"https://www.netlify.com"},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               牧心星语
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-home"></i>
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/tags">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-tags"></i>
+                                
+                                标签
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/categories">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                
+                                分类
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/links">
+                                
+                                    <i class="menu-text-color menu-icon fa-solid fa-link"></i>
+                                
+                                友链
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-home"></i>
+                                </span>
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-box-archive"></i>
+                                </span>
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/tags">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-tags"></i>
+                                </span>
+                            
+                            标签
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/categories">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-layer-group"></i>
+                                </span>
+                            
+                            分类
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/links">
+                            
+                                <span class="menu-icon-wrap border-box flex-center">
+                                    <i class="drawer-menu-text-color menu-icon fa-solid fa-link"></i>
+                                </span>
+                            
+                            友链
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Lucky STUN 内网穿透
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">muxinxy</span>
+                                
+                                    <span class="author-badge">Lv1</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-04-22 14:40:48</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Mon Apr 22 2024 08:50:21 GMT+0000">2024-04-22 16:50:21</span>
+                </span>
+            
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/STUN/">STUN</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/NAT/">NAT</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/DDNS/">DDNS</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/SSL/">SSL</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E6%95%99%E7%A8%8B/">教程</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Lucky/">Lucky</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/P2P/">P2P</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h1 id="Lucky-STUN-内网穿透"><a href="#Lucky-STUN-内网穿透" class="headerlink" title="Lucky STUN 内网穿透"></a>Lucky STUN 内网穿透</h1><h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>NAT必须是<code>Full Cone</code>​类型，俗称<code>NAT-1</code>​</p>
+<p>关于NAT类型，参考：<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/335253159" >https://zhuanlan.zhihu.com/p/335253159<i class="fas fa-external-link-alt"></i></a></p>
+<p>可以使用Python的pip包<code>pystun3</code>​测试NAT类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pystun3</span><br><span class="line">pystun3</span><br></pre></td></tr></table></figure>
+
+<p>输出<code>NAT Type: Full Cone</code>​即可</p>
+<h1 id="安装Lucky"><a href="#安装Lucky" class="headerlink" title="安装Lucky"></a>安装Lucky</h1><p>参考官网：<a class="link"   target="_blank" rel="noopener" href="https://lucky666.cn/" >https://lucky666.cn/<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="DDNS"><a href="#DDNS" class="headerlink" title="DDNS"></a>DDNS</h1><p>登录Lucky后台，进入“动态域名”，添加任务</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/f7b03902dcf28ed9375d465606cd2cc2.jpg"  alt="QQ截图20240422140518">​</p>
+<p>托管服务商以Dynv6（一个免费为IPv4和IPv6提供DDNS服务的网站）为例，每个托管服务商名称下方都有相应的教程链接</p>
+<p>域名列表填写自己的域名<code>example1.com</code>​和对应的泛域名<code>*.example1.com</code>​，每行一个域名</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/33e989646cc6955ca5fa1a1b114f3850.jpg"  alt="QQ截图20240422140927">​</p>
+<h1 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h1><p>在Lucky后台选择“安全管理”，为DDNS域名添加SSL证书</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/e8287fac240b439ba3bfcf09ee1056b0.jpg"  alt="QQ截图20240422144326">​</p>
+<p>验证方式选择<code>example1.com</code>​所在的DNS平台，根据验证方式下方的说明进行操作，域名列表填写<code>example1.com</code>​和<code>*.example1.com</code>​，每行一个，电子邮箱任意，算法任意</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/c92e9a486cb3a7a8ee58214cb0407834.jpg"  alt="QQ截图20240422144415">​</p>
+<h1 id="Web服务"><a href="#Web服务" class="headerlink" title="Web服务"></a>Web服务</h1><p>进入“Web服务”，添加Web服务规则</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/2a30a45a786e7e3df8d47dc3fba6c5e5.jpg"  alt="QQ截图20240422150200">​</p>
+<p>监听端口选择一个不和其他服务冲突的端口即可，打开“防火墙自动放行”和“TLS”</p>
+<p>添加Web服务子规则</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/7853ff98503e10d77905213f66f9ebf5.jpg"  alt="QQ截图20240422150301">​</p>
+<p>Web服务类型选择“反向代理”，后端地址填写内网IP和端口，比如群晖Web服务的IP和端口</p>
+<p>打开跨域支持</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/c28ef0f3e13ae31b35265690ab908af2.jpg"  alt="QQ截图20240422150322">​</p>
+<p>添加完成后类似下图</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/c216ee7b5ea1d40d7efe0b71e5073966.jpg"  alt="QQ截图20240422141007">​</p>
+<h1 id="Cloudflare页面规则"><a href="#Cloudflare页面规则" class="headerlink" title="Cloudflare页面规则"></a>Cloudflare页面规则</h1><p>由于STUN内网穿透的IP和端口都会变化，本教程使用Cloudflare页面规则自动更新IP和端口</p>
+<p>准备另一个域名<code>example2.com</code>​，添加A类型的DNS，IP地址任意，打开代理（橙色云朵）</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/1097c5a68894db53943167a785f94c98.jpg"  alt="QQ截图20240422141447">​</p>
+<p>添加页面规则 Page Rules</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/e84eb32c7b98ac4c63ec9d0a3075a4c9.jpg"  alt="QQ截图20240422141734">​</p>
+<p>URL填写<code>*.example2.com/*</code>​，Setting 选择<code>Forwarding URL</code>​，status code 选择<code>302</code>​，destination URL 填写<code>https://$1.example2.com:1234/$2</code>​</p>
+<p>填写完成先不要保存，打开F12开发者模式（或网页空白处右键选择“检查”），选择“网络”选项卡，点击保存</p>
+<p>点击名称中一长串的字母数字，在右边的标头-常规-请求网址中找到zones后面的<code>zone ID</code>​(红色下划线)和pagerules后面的<code>page rule ID</code>​(蓝色下划线)，复制保存备用</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/81c2bb8d1ef1832abf166a12b987819e.jpg"  alt="QQ截图20240422152512">​</p>
+<p>如果保存了页面规则也没关系，选择编辑按照上述方法也可以获得<code>zone ID</code>​和<code>page rule ID</code>​，复制保存备用</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/b02f95593b9002841d84b657da8efc5c.jpg"  alt="QQ截图20240422141616">​</p>
+<h1 id="STUN内网穿透"><a href="#STUN内网穿透" class="headerlink" title="STUN内网穿透"></a>STUN内网穿透</h1><p>在Lucky后台选择“STUN内网穿透”，添加穿透规则</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/16b5b24749454cdf61c2a8520cfb0e36.jpg"  alt="QQ截图20240422140830">​</p>
+<p>穿透通道监听端口设为0表示随机生成，目标地址填写内网IP，目标端口填写之前在Web服务中设置的监听端口</p>
+<p>开启Webhook，接口地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.cloudflare.com/client/v4/zones/[zone ID]/pagerules/[page rule ID]</span><br></pre></td></tr></table></figure>
+
+<p>将[zone ID]替换为之前保存的<code>zone ID</code>​，将[page rule ID]替换为之前保存的<code>page rule ID</code>​</p>
+<p>请求方法：PUT</p>
+<p>请求头：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X-Auth-Email: 注册CF的邮箱</span><br><span class="line">X-Auth-Key: Global API Key  </span><br></pre></td></tr></table></figure>
+
+<p>Global API Key 在右上角 My Profile - API Tokens - Global API Key，点击“View”即可查看</p>
+<p>请求主体：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;targets&quot;</span>:[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;target&quot;</span>:<span class="string">&quot;url&quot;</span>,</span><br><span class="line">      <span class="string">&quot;constraint&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;operator&quot;</span>:<span class="string">&quot;matches&quot;</span>,</span><br><span class="line">        <span class="string">&quot;value&quot;</span>:<span class="string">&quot;*.example2.com/*&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;actions&quot;</span>:[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">&quot;id&quot;</span>:<span class="string">&quot;forwarding_url&quot;</span>,</span><br><span class="line">      <span class="string">&quot;value&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;url&quot;</span>:<span class="string">&quot;https://<span class="variable">$1</span>.example1.com:#&#123;port&#125;/<span class="variable">$2</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;status_code&quot;</span>:302</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;priority&quot;</span>:1,</span><br><span class="line">  <span class="string">&quot;status&quot;</span>:<span class="string">&quot;active&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接口调用成功包含的字符串：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;success&quot;</span>:<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>填写完成后点击“Webhook手动触发测试”，如果出现错误有可能是上述信息填写有问题或本机网络无法正常访问Cloudflare</p>
+<p>如果本机网络无法访问Cloudflare或延迟过高，可以开启代理设置（HTTP&#x2F;HTTPS&#x2F;SOCKS）或使用代理URL，比如 <a class="link"   target="_blank" rel="noopener" href="https://github.com/gaboolic/cloudflare-reverse-proxy" >https://github.com/gaboolic/cloudflare-reverse-proxy<i class="fas fa-external-link-alt"></i></a>，这样就可以把接口地址改成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://yourproxydomain.com/proxy/https://api.cloudflare.com/client/v4/zones/[zone ID]/pagerules/[page rule ID]</span><br></pre></td></tr></table></figure>
+
+<p>​<img   src="https://pic.muxinxy.com/2024/04/b587c81f5405f228a3738b54ee230167.jpg"  alt="QQ截图20240422153606">​</p>
+<p>如果测试成功，就可以添加穿透规则</p>
+<p>​<img   src="https://pic.muxinxy.com/2024/04/15033c755d059e8f13a50ee14546f422.jpg"  alt="QQ截图20240422141138">​</p>
+<p>如上图，STUN穿透成功后会显示WebHook触发结果和公网地址，此时在浏览器中访问STUN穿透公网地址（IP:Port）也可以访问到内网服务</p>
+<p>穿透成功后访问<code>nas.example2.com</code>​，浏览器会根据Cloudflare的页面规则自动跳转到<code>nas.example1.com:2309</code>​</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>动态域名定期检查公网IP是否改变，如果改变了就修改<code>*.example1.com</code>​的DNS为新的公网IP</p>
+<p>Web服务用于反向代理，根据<code>*.example1.com</code>​的不同前缀访问内网的不同服务</p>
+<p>STUN内网穿透会在穿透公网地址改变时触发WebHook，自动更新Cloudflare页面规则</p>
+<p>安全管理用于自动申请和续期<code>*.example1.com</code>​的SSL证书</p>
+<p>如果只有一个域名，也可以使用两个不同的二级域名进行穿透，比如将<code>*.1.example.com</code>​用于DDNS和SSL，将<code>*.2.example.com</code>​用于Cloudflare页面规则</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>Lucky官网：<a class="link"   target="_blank" rel="noopener" href="https://lucky666.cn/" >https://lucky666.cn/<i class="fas fa-external-link-alt"></i></a></p>
+<p>使用 Lucky 的 STUN 内网穿透利用 UPNP 和 NAT1 在公网打洞并配置伪 DDNS：<a class="link"   target="_blank" rel="noopener" href="https://www.xrgzs.top/posts/lucky-stun-upnp-nat1" >https://www.xrgzs.top/posts/lucky-stun-upnp-nat1<i class="fas fa-external-link-alt"></i></a></p>
+<p>打通大内网第一期 无公网部署https和反向代理 （基于Lucky的Stun穿透）：<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/668448423" >https://zhuanlan.zhihu.com/p/668448423<i class="fas fa-external-link-alt"></i></a></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/STUN/">STUN</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/NAT/">NAT</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/DDNS/">DDNS</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/SSL/">SSL</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Lucky/">Lucky</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/P2P/">P2P</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/post/neovisjs-visualization-neo4j-database.html"
+                                   title="Neovis.js可视化Neo4j数据库"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Neovis.js可视化Neo4j数据库</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/post/use-pgloader-to-migrate-data-from-mysql-to-postgresql-16xdva.html"
+                                   title="使用PGLoader把数据从MySQL迁移到PostgreSQL"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">使用PGLoader把数据从MySQL迁移到PostgreSQL</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="waline-comment-container">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/waline/3.6.0/waline.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/waline/3.6.0/waline-meta.css"/>
+        <div id="waline-comment"></div>
+        <script data-pjax>
+          window.KeepCommentPlugin.walineOptions = JSON.parse('{}'.replace(/&#34;/g, '"'))
+          window.KeepCommentPlugin.walineOptions.el = '#waline-comment'
+          window.KeepCommentPlugin.walineOptions.comment = '.post-comments-count'
+          window.KeepCommentPlugin.walineOptions.serverURL = 'https://waline-vercel.muxinxy.com'
+          window.KeepCommentPlugin.walineOptions.lang = 'zh-CN' || 'zh-CN'
+          window.KeepCommentPlugin.walineOptions.reaction = 'false' === 'true'
+        </script>
+
+        
+
+        
+            <script 
+                    async
+                    type="module"
+            >
+              import { init } from 'https://cdnjs.cloudflare.com/ajax/libs/waline/3.6.0/waline.js'
+              window.KeepCommentPlugin.initWaline = () => {
+                if (init) {
+                  init(window.KeepCommentPlugin.walineOptions)
+                  window.KeepCommentPlugin.hideLoading()
+                } else {
+                  setTimeout(() => {
+                    window.KeepCommentPlugin.initWaline()
+                  }, 1000)
+                }
+              }
+
+              if ('false' === 'true') {
+                setTimeout(() => {
+                  window.KeepCommentPlugin.initWaline()
+                }, 1200)
+              } else {
+                window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initWaline)
+              }
+            </script>
+        
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lucky-STUN-%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-text">Lucky STUN 内网穿透</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-text">前提</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Lucky"><span class="nav-text">安装Lucky</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DDNS"><span class="nav-text">DDNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL"><span class="nav-text">SSL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web%E6%9C%8D%E5%8A%A1"><span class="nav-text">Web服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloudflare%E9%A1%B5%E9%9D%A2%E8%A7%84%E5%88%99"><span class="nav-text">Cloudflare页面规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STUN%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-text">STUN内网穿透</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-text">补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">muxinxy</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+        
+        <div class="deploy-info info-item">
+            
+                <a target="_blank" rel="nofollow" href="https://www.netlify.com">
+            
+            本站由 <span class="tooltip" data-tooltip-content="Netlify"><img src="/images/brands/netlify.png"></span> 提供部署服务
+            
+                </a>
+            
+        </div>
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lucky-STUN-%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-text">Lucky STUN 内网穿透</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-text">前提</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Lucky"><span class="nav-text">安装Lucky</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DDNS"><span class="nav-text">DDNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL"><span class="nav-text">SSL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web%E6%9C%8D%E5%8A%A1"><span class="nav-text">Web服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloudflare%E9%A1%B5%E9%9D%A2%E8%A7%84%E5%88%99"><span class="nav-text">Cloudflare页面规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STUN%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-text">STUN内网穿透</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-text">补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.2.5/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
